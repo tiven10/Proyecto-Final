@@ -21,9 +21,9 @@ def limpiar_texto(texto):
     palabras_filtradas = [p for p in palabras if p not in stop_words]
     return ' '.join(palabras_filtradas)
 
-# ----------------------------------
+
 # ENTRENAMIENTO (solo se hace una vez)
-# ----------------------------------
+
 if not os.path.exists("modelo_entrenado.pkl"):
     datos = pd.read_csv('reportes_soportes.csv')
     datos['reporte'] = datos['reporte'].apply(limpiar_texto)
@@ -40,13 +40,13 @@ if not os.path.exists("modelo_entrenado.pkl"):
     joblib.dump(modelo, 'modelo_entrenado.pkl')
     joblib.dump(vectorizador, 'vectorizador_entrenado.pkl')
 
-# Cargar modelo y vectorizador
+
 modelo = joblib.load('modelo_entrenado.pkl')
 vectorizador = joblib.load('vectorizador_entrenado.pkl')
 
-# ----------------------------------
+
 # LISTA ENLAZADA
-# ----------------------------------
+
 class Nodo:
     def __init__(self, reporte):
         self.reporte = reporte
@@ -91,9 +91,9 @@ class ListaEnlazada:
             actual = actual.siguiente
         print(" Clasificación completa.")
 
-# ----------------------------------
+
 # MENÚ INTERACTIVO
-# ----------------------------------
+
 def menu_interactivo():
     lista = ListaEnlazada()
     while True:
