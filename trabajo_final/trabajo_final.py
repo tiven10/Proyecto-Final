@@ -25,7 +25,7 @@ def limpiar_texto(texto):
 # ENTRENAMIENTO (solo se hace una vez)
 
 if not os.path.exists("modelo_entrenado.pkl"):
-    datos = pd.read_csv('reportes_soportes.csv')
+    datos = pd.read_csv('trabajo_final/reportes_soportes.csv')
     datos['reporte'] = datos['reporte'].apply(limpiar_texto)
     vectorizador = TfidfVectorizer()
     X = vectorizador.fit_transform(datos['reporte'])
