@@ -85,9 +85,12 @@ class ListaEnlazada:
         print("Clasificando reportes...")
         while actual:
             limpio = limpiar_texto(actual.reporte)
-            X_nuevo = vectorizador.transform([limpio])
-            categoria = modelo.predict(X_nuevo)[0]
-            print(f" '{actual.reporte}' →  Categoría: {categoria}")
+            if not limpio or len(limpio.split()) < 2:
+                print(f"  '{actual.reporte}' →  No es posible clasificar este reporte. Por favor ingrese un reporte válido relacionado con soporte técnico.")
+            else:
+                X_nuevo = vectorizador.transform([limpio])
+                categoria = modelo.predict(X_nuevo)[0]
+                print(f" '{actual.reporte}' →  Categoría: {categoria}")
             actual = actual.siguiente
         print(" Clasificación completa.")
 
